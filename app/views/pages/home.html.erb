@@ -1,4 +1,8 @@
+<% if user_signed_in? %>
+	<h1>Welcome to the app</h1>
+<% else %>
 <div class="jumbotron">
 	<h1>Bernardo.me</h1>
 	<p>Click here to <%= link_to "Sign Up", "#", class: "btn btn-primary" %></p>
 </div>
+<% end %>
