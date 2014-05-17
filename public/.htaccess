@@ -1,0 +1,9 @@
+<IfModule mod_passenger.c>
+Options -MultiViews
+ PassengerResolveSymlinksInDocumentRoot on
+ #Set this to whatever environment you'll be running in
+ RailsEnv production
+ RackBaseURI /
+ SetEnv GEM_HOME /var/www/x.bernardo.me/vendor/bundle
+
+</IfModule>
