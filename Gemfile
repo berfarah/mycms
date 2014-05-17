@@ -29,6 +29,9 @@ gem 'spring',        group: :development
 # Use bootstrap to pretty things up until I style it myself
 gem 'bootstrap-sass'
 
+# Add js runtime
+gem 'execjs'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
