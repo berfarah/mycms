@@ -31,6 +31,7 @@ gem 'bootstrap-sass'
 
 # Add js runtime
 gem 'execjs'
+gem 'therubyrhino'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
