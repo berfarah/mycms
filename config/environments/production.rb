@@ -1,7 +1,7 @@
 Rails.application.configure do
 
   config.before_configuration do
-    mysecrets = File.join('www/var/x.bernardo.me', 'config', 'mysecrets.yml')
+    mysecrets = File.join(Rails.root, 'config', 'mysecrets.yml')
     YAML.load(File.open(mysecrets)).each do |key, value|
       ENV[key.to_s] = value
     end if File.exists?(mysecrets)
@@ -36,8 +36,6 @@ Rails.application.configure do
 
   # Email is sent from this email address
   config.action_mailer.default_options = { from: 'no-reply@bernardo.me' }
-
-  APP_CONFIG = YAML.load( File.read(::Rails.root + "/config/mysecrets.yml") )
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smpt_settings = {
