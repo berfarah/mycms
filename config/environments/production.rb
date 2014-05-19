@@ -30,7 +30,7 @@ Rails.application.configure do
   # Email is sent from this email address
   config.action_mailer.default_options = { from: 'no-reply@bernardo.me' }
 
-  APP_CONFIG = YAML.load( File.read(RAILS_ROOT + "/config/mysecrets.yml") )
+  APP_CONFIG = YAML.load( File.read(::Rails.root + "/config/mysecrets.yml") )
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smpt_settings = {
