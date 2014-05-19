@@ -2,9 +2,9 @@ Rails.application.configure do
 
   config.before_configuration do
     mysecrets = File.join(Rails.root, 'config', 'mysecrets.yml')
-    YAML.load(File.open(mysecrets).each do |key, value|
+    YAML.load(File.open(mysecrets)).each do |key, value|
       ENV[key.to_s] = value
-    end if File.exists?(env_file))
+    end if File.exists?(env_file)
   end
   # Settings specified here will take precedence over those in config/application.rb.
 
