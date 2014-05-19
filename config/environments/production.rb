@@ -1,7 +1,7 @@
 Rails.application.configure do
 
   config.before_configuration do
-    mysecrets = File.join(Rails.root, 'config', 'mysecrets.yml')
+    mysecrets = File.join('www/var/x.bernardo.me', 'config', 'mysecrets.yml')
     YAML.load(File.open(mysecrets)).each do |key, value|
       ENV[key.to_s] = value
     end if File.exists?(mysecrets)
