@@ -30,6 +30,8 @@ Rails.application.configure do
   # Email is sent from this email address
   config.action_mailer.default_options = { from: 'no-reply@bernardo.me' }
 
+  APP_CONFIG = YAML.load( File.read(RAILS_ROOT + "/config/mysecrets.yml") )
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smpt_settings = {
     :enable_starttls_auto => true,
@@ -39,7 +41,7 @@ Rails.application.configure do
     :domain => 'bernardo.me',
     :authentication => :plain,
     :user_name => 'ber@bernardo.me',
-    :password => Mycms::Application.config.smtp_pass
+    :password => APP_CONFIG['smtp_password']
   }
 
 
