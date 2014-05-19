@@ -1,5 +1,23 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users,
+             :path => '',
+             :path_names => {
+              :sign_in => 'login',
+              :sign_out => 'logout',
+              :sign_up => 'register',
+              :edit => 'profile'
+             },
+             :controllers => {
+              :registrations => "registrations",
+              :confirmations => 'confirmations'
+             }
+
+  devise_scope :user do
+    patch "/confirmation" => "confirmations#confirm"
+    put "/confirmation" => "confirmations#confirm"
+    get "/confirmation" => "confirmations#show"
+  end
+
   root 'pages#home'
 
   get 'about' => 'pages#about'

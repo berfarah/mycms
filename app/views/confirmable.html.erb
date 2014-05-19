@@ -1,0 +1,18 @@
+<h2>You're almost done! Now create a password to access your account.</h2>
+
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password, autocomplete: "off" %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+  <div><%= f.label :confirmation_token %><br />
+  <%= f.password_field :confirmation_token, :hidden, :value => @original_token %></div>
+
+  <div><%= f.submit "Resend confirmation instructions" %></div>
+<% end %>
+
+<%= render "confirmable/shared/links" %>

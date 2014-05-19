@@ -21,6 +21,27 @@ Rails.application.configure do
 
   # Host for mailer
   config.action_mailer.default_url_options = { :host => 'http://x.bernardo.me' }
+  config.action_mailer.perform_deliveries = true
+
+  # Ignore bad email addresses and do not raise email delivery errors.
+  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  config.action_mailer.raise_delivery_errors = true
+
+  # Email is sent from this email address
+  config.action_mailer.default_options = { from: 'no-reply@bernardo.me' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smpt_settings = {
+    :enable_starttls_auto => true,
+    :address => 'smtp.gmail.com',
+    :port => 465,
+    :tls => true,
+    :domain => 'bernardo.me',
+    :authentication => :plain,
+    :user_name => 'ber@bernardo.me',
+    :password => Mycms::Application.config.smtp_pass
+  }
+
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = true
@@ -65,9 +86,6 @@ Rails.application.configure do
   # config.assets.precompile += %w( search.js )
   # config.assets.precompile += ["*.js", "*.css"]
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

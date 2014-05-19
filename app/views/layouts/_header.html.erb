@@ -9,22 +9,27 @@
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<a class="navbar-brand" href="#">My_CMS</a>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">My_CMS</a>
+		</div>
+
+		<ul class="navbar-nav nav">
+			<li><%= link_to "Home", root_path %></li>
+			<li><%= link_to "About", about_path %></li>
+			<li></li>
+		</ul>
+
+		<ul class="navbar-nav nav navbar-right">
+		<% if user_signed_in? %>
+			<li class="dropdown">
+				<%= link_to current_user.username, edit_user_registration_path, class: "dropdown-toggle" %></li><li>
+				<%= link_to "Log out", destroy_user_session_path, method: :delete %>
+			</li>
+		<% else %>
+			<li><%= link_to "Sign Up", new_user_registration_path, class: "btn" %></li>
+			<li><%= link_to "Log In", new_user_session_path, class: "btn" %></li>
+		<% end %>
+		</ul>
 	</div>
-
-	<ul class="navbar-nav nav">
-		<li><%= link_to "Home", root_path %></li>
-		<li><%= link_to "About", about_path %></li>
-		<li></li>
-	</ul>
-
-	<ul class="navbar-nav nav navbar-right">
-	<% if user_signed_in? %>
-		<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
-	<% else %>
-		<li><%= link_to "Sign Up", new_user_registration_path, class: "btn" %></li>
-		<li><%= link_to "Log In", new_user_session_path, class: "btn" %></li>
-	<% end %>
-	</ul>
 </nav>
