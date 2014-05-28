@@ -26,3 +26,4 @@ CMS.sublime-workspace
 # Ignore all secrets
 /config/secrets.yml
 /config/mysecrets.yml
+/config/initializers/secret_token.rb
