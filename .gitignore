@@ -15,3 +15,11 @@
 /log/*.log
 /tmp
 .DS_Store
+
+# Ignore Sublime Text files
+CMS.sublime-project
+CMS.sublime-workspace
+
+# Ignore all secrets
+/config/secrets.yml
+/config/mysecrets.yml

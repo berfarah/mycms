@@ -1,17 +1,33 @@
-<h2>You're almost done! Now create a password to access your account.</h2>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h2 class="panel-title">You're almost done! Now create a password to access your account.</h2>
+	</div>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path) do |f| %>
-  <%= devise_error_messages! %>
+	<div class="panel-body">
+		<%= form_for(resource, as: resource_name, url: confirmation_path) do |f| %>
+			<%= devise_error_messages! %>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password, autocomplete: "off" %></div>
+			<div class="form-group">
+				<%= f.label :password %><br />
+				<%= f.password_field :password, autocomplete: "off" %>
+			</div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+			<div class="form-group">
+				<%= f.label :password_confirmation %><br />
+				<%= f.password_field :password_confirmation, autocomplete: "off" %>
+			</div>
 
-  <div><%= f.hidden_field :confirmation_token, :value => @original_token %></div>
+			<div class="form-group">
+				<%= f.hidden_field :confirmation_token, :value => @original_token %>
+			</div>
 
-  <div><%= f.submit "Confirm Account" %></div>
-<% end %>
+			<div class="form-group">
+				<%= f.submit "Confirm Account", class: "btn btn-primary" %>
+			</div>
+		<% end %>
+	</div>
 
-<%= render "confirmable/shared/links" %>
+	<div class="panel-footer">
+		<%= render "confirmable/shared/links" %>
+	</div>
+</div>

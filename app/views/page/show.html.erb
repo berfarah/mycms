@@ -1,0 +1,6 @@
+<h1><%= @post.title %></h1>
+<%= @post.content %>
+<% if @post.user == current_user %>
+  <%= link_to 'Edit', sti_post_path(@type, @post, :edit) %> |
+<% end %>
+<%= link_to 'Back', sti_post_path(@type)  %>

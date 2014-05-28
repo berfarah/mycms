@@ -2,7 +2,8 @@
 
 <div class="container">
 	<% flash.each do |name, msg| %>
-		<%= content_tag(:div, msg, class: "alert alert-#{name}") %>
+		<% if(name == "notice") then name_class = "success" else name_class = "danger" end %>
+		<%= content_tag(:div, msg, class: "alert alert-#{name_class}") %>
 	<% end %>
 
 	<%= yield %>

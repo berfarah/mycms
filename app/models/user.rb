@@ -5,6 +5,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,
          :confirmable, :validatable, :authentication_keys => [:login]
 
+  has_many :posts, :dependent => :destroy
+  delegate :design, :music, :shared, to: :posts
+  has_many :metas, :as => :metable, :dependent => :destroy, :autosave => true
+
+  validates :username,
+        :uniqueness => {
+          :case_sensitive => false
+        }
+
+  accepts_nested_attributes_for :metas
 
   def login=(login)
   	@login = login
@@ -35,8 +45,5 @@ class User < ActiveRecord::Base
   	end
   end
 
-  validates :username,
-  			:uniqueness => {
-  				:case_sensitive => false
-  			}
+
 end

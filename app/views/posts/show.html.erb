@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @post.published_at %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Summary:</strong>
+  <%= @post.summary %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>Content html:</strong>
+  <%= @post.content_html %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @post.slug %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @post.type %>
+</p>
+
+<% if @post.user == current_user %>
+  <%= link_to 'Edit', sti_post_path(@type, @post, :edit) %> |
+<% end %>
+<%= link_to 'Back', sti_post_path(@type)  %>

@@ -14,4 +14,15 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .
+$(document).ready(function(){
+	$('.date.input-group').datetimepicker({
+		pickTime: false
+	});
+	$('.time.input-group').datetimepicker({
+		pickDate: false,
+		pick12HourFormat: false
+	});
+});

@@ -1,0 +1,47 @@
+<%= form_for(@post ) do |f| %>
+	<% if @post.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+			<ul>
+			<% @post.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<div class="form-group">
+		<%= f.text_field :title, :class => "form-control", :size => 100, :maxlength => 100, "placeholder" => "Title", :style => "font-size: 30px; height: 50px" %>
+	</div>
+	<div class="form-inline" style="margin: 0 0 20px">
+		<div class="form-group" style="margin: 0 20px 0 0">
+			<%= f.label :published_at %><br>
+			<div class="input-group date" data-date-format="YYYY-MM-DD">
+				<%= f.text_field :published_at_date, :class => "datepicker form-control", :size => 8, :maxlength => 10 %>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			</div>
+			<div class="input-group time" data-date-format="HH:mm">
+				<%= f.text_field :published_at_time, :class => "timepicker form-control", :size => 2, :maxlength => 5 %>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :slug %><br>
+			<%= f.text_field :slug, :class => "form-control", :size => 30, :maxlength => 100 %>
+		</div>
+
+	</div>
+	<div class="form-group">
+		<%= f.label :summary %><br>
+		<%= f.text_area :summary, :class => "form-control", :rows => 4 %>
+	</div>
+	<div class="form-group">
+		<%= f.label :content %><br>
+		<%= f.text_area :content, :class => "form-control", :rows => 10 %>
+	</div>
+		<%= f.hidden_field :type, :value => @type %>
+	<div class="actions">
+		<%= f.submit "Save", :class => "btn btn-primary" %>
+	</div>
+<% end %>

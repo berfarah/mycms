@@ -11,7 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518223246) do
+ActiveRecord::Schema.define(version: 20140527055618) do
+
+  create_table "meta", force: true do |t|
+    t.string   "key"
+    t.string   "value"
+    t.integer  "metable_id"
+    t.string   "metable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "post_meta", force: true do |t|
+    t.integer  "post_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "published_at"
+    t.string   "title"
+    t.text     "summary"
+    t.text     "content"
+    t.text     "content_html"
+    t.string   "slug"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "user_meta", force: true do |t|
+    t.integer  "user_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
