@@ -6,9 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 if User.count == 0
-	User.create( :username => 'ber@farah', :email => 'ber@bernardo.me', :admin => true)
-	# @user = User.new(:username => 'ber@farah', :email => 'ber@bernardo.me', :admin => true)
-	# @user.save
+	admin = User.new(:username => 'ber@farah', :email => 'ber@bernardo.me')
+	admin.save
 	# need to find user and update to admin
-	# @user.update_attribute :admin, true
+	admin.update_attribute :admin, true
 end
