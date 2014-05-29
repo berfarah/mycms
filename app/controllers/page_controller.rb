@@ -1,7 +1,7 @@
 class PageController < PostsController
 
 	before_action :is_admin, except: [:show, :home]
- 	before_action :authenticate_user!, except: [:index, :show, :home]
+ 	before_action :authenticate_user!, except: [:show, :home]
 
 	def home
 	end
