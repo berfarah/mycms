@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-	resources :posts # Don't actually want a page called posts
-	resources :design, controller: 'posts', type: 'Design', :id => /.*/
-	resources :music, controller: 'posts', type: 'Music', :id => /.*/
-	resources :shared, controller: 'posts', type: 'Shared', :id => /.*/
-	scope '/page' do
-		resources :page, type: 'Page', :except => [:show, :update, :destroy], :path => ''
-	end
-
-
 	devise_for 	:users,
 				:path => '',
 				:path_names => {
@@ -25,6 +16,13 @@ Rails.application.routes.draw do
 		patch "/confirmation" => "confirmations#confirm"
 		put "/confirmation" => "confirmations#confirm"
 		get "/confirmation" => "confirmations#show"
+	end
+	resources :posts # Don't actually want a page called posts
+	resources :design, controller: 'posts', type: 'Design', :id => /.*/
+	resources :music, controller: 'posts', type: 'Music', :id => /.*/
+	resources :shared, controller: 'posts', type: 'Shared', :id => /.*/
+	scope '/page' do
+		resources :page, type: 'Page', :except => [:show, :update, :destroy], :path => ''
 	end
 
 	root 'page#home'
