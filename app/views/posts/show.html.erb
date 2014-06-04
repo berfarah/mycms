@@ -40,6 +40,16 @@
   <%= @post.type %>
 </p>
 
+<p>
+  <strong>Tags:</strong>
+  <% tags = []
+  @post.tags.each do |tag|
+    tags << (link_to tag.name, tag)
+  end
+  %>
+  <%= tags.join(', ').html_safe %>
+</p>
+
 <% if @post.user == current_user %>
   <%= link_to 'Edit', sti_post_path(@type, @post, :edit) %> |
 <% end %>

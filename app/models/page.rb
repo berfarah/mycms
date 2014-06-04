@@ -1,5 +1,4 @@
 class Page < Post
-	scope :page, -> { where(type: 'page') }
 
 	def to_param
 		"#{slug.parameterize}"

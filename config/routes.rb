@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'tags/index'
+
+  get 'tags/new'
+
+  get 'tags/create'
+
+  get 'tags/destroy'
+
+  get 'tags/show'
+
+  get 'tags/edit'
+
 	devise_for 	:users,
 				:path => '',
 				:path_names => {
@@ -24,6 +36,7 @@ Rails.application.routes.draw do
 	scope '/page' do
 		resources :page, type: 'Page', :except => [:show, :update, :destroy], :path => ''
 	end
+	resources :tags
 
 	root 'page#home'
 	get '404', :to => 'page#page_not_found'

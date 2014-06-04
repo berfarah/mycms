@@ -1,0 +1,16 @@
+<%= form_for @tag do |f| %>
+	<div class="form-group">
+		<%= f.text_field :name, :class => "form-control", :size => 100, :maxlength => 100, "placeholder" => "Name", :style => "font-size: 30px; height: 50px" %>
+	</div>
+	<div class="form-group">
+		<%= f.label :slug %><br>
+		<%= f.text_field :slug, :class => "form-control", :size => 30, :maxlength => 100 %>
+	</div>
+	<div class="form-group">
+		<%= f.label :description %><br>
+		<%= f.text_area :description, :class => "form-control", :rows => 4 %>
+	</div>
+	<div class="actions">
+		<%= f.submit "Save", :class => "btn btn-primary" %>
+	</div>
+<% end %>

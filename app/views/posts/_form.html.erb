@@ -1,4 +1,4 @@
-<%= form_for(@post ) do |f| %>
+<%= form_for(@post) do |f| %>
 	<% if @post.errors.any? %>
 		<div id="error_explanation">
 			<h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -39,6 +39,10 @@
 	<div class="form-group">
 		<%= f.label :content %><br>
 		<%= f.text_area :content, :class => "form-control", :rows => 10 %>
+	</div>
+	<div class="form-group">
+		<%= f.label :tags %><br>
+		<%= f.hidden_field :tag_tokens, class: 'select2 ajax form-control', data: { source: tags_path }, :value => @post.tags.ids.join(',') %>
 	</div>
 		<%= f.hidden_field :type, :value => @type %>
 	<div class="actions">

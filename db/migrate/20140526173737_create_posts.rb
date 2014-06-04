@@ -1,7 +1,7 @@
 class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
-      t.integer :user_id
+      t.references :user, index: true
       t.datetime :published_at
       t.string :title
       t.text :summary
@@ -13,7 +13,6 @@ class CreatePosts < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :posts, :user_id
     add_index :posts, :slug
   end
 end

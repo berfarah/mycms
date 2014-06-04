@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :confirmable, :validatable, :authentication_keys => [:login]
 
   has_many :posts, :dependent => :destroy
-  delegate :design, :music, :shared, to: :posts
+  delegate :design, :music, :shared, :page, :to => :posts
   has_many :metas, :as => :metable, :dependent => :destroy, :autosave => true
 
   validates :username,
