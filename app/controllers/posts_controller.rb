@@ -13,8 +13,6 @@ class PostsController < ApplicationController
     @posts = post_type_class.all
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
   def show
     @post = post_type_class.find(params[:id])
 
@@ -42,15 +40,11 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
 
-    if @post.save
-      p = params[:post][:tag_tokens].split(',') - @post.tags.ids
-      p.select{ |x| x.present? }.each do |tag_id|
-        tagging = Tagging.new(tag_id: tag_id, taggable_id: @post.id, taggable_type: 'Post') if Tag.exists?(tag_id)
-        oops = tagging unless tagging.save # Check if saved and throw appropriate errors
-      end
-    else
-      oops = @post # Throw post error
-    end
+    oops = @post unless @post.save
+    #   oops = params[:post][:tag_tokens].split(',').create_taggings(@post)
+    # else
+    #   oops = @post # Throw post error
+    # end
 
     respond_to do |format| # Redirect or output error
       if oops.blank?
@@ -64,28 +58,18 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
-      p = params[:post] || params[:shared] || params[:design] || params[:music]
+    oops = @post unless @post.update(post_params)
 
-      removed = @post.tags.ids - p[:tag_tokens].split(',')
-      added   = p[:tag_tokens].split(',') - @post.tags.ids
-
-      added.each do |tag_id|
-        tagging = Tagging.new(tag_id: tag_id, taggable_id: @post.id, taggable_type: 'Post') if Tag.exists?(tag_id)
-        oops = tagging unless tagging.save
-      end
-
-      removed.each do |tag_id|
-        tagging = Tagging.find_by_tag_id_and_taggable_id_and_taggable_type(tag_id, @post.id, 'Post')
-        oops = tagging unless tagging.destroy
-      end
-    else
-      oops = @post
-    end
+    #   p = params[:shared] || params[:design] || params[:music] || params[:post]
+    #   p = p[:tag_tokens].split(',')
+    #   oops = Tagging.create_taggings(p, @post)
+    #   oops = Tagging.destroy_taggings(p, @post)
+    # else
+    # end
 
     respond_to do |format|
       if oops.blank?
-        format.html { redirect_to @post, notice: "#{post_type} was successfully saved." }
+        format.html { redirect_to @post, notice: "#{post_type} was successfully saved. #{p.to_s}" }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
@@ -123,7 +107,7 @@ class PostsController < ApplicationController
     end
 
     def post_type_param
-      ":#{post_type}"
+      post_type.to_sym
     end
 
     def post_type_method
@@ -144,6 +128,8 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       post_required = post_type.downcase.to_sym
-      params.require(post_required).permit(:user_id, :date, :title, :summary, :content, :slug, :type, :tag_tokens, :tag_ids)
+      params.require(post_required).permit( :user_id, :published_at, :title, :summary,
+                                            :content, :slug, :type, :tag_tokens, :tag_ids,
+                                            :published_at_date, :published_at_time )
     end
 end

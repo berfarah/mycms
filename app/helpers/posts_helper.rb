@@ -10,4 +10,16 @@ module PostsHelper
 	def format_action(action)
 		action ? "#{action}_" : ""
 	end
+
+	def post_tag(tags = @post.tags, separator = ', ', linksto = true )
+		output = []
+		tags.each do |tag|
+			if linksto
+				output << ( link_to tag.name, tag_path(tag) )
+			else
+				output << tag.name
+			end
+		end
+		self.tags = output.join(separator)
+	end
 end

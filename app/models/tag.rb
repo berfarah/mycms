@@ -5,14 +5,14 @@ class Tag < ActiveRecord::Base
 
 	has_many :posts,  :through     => :taggings,
 					  :source      => :taggable,
-					  :source_type => "Post",
+					  :source_type => 'Post',
 					  :class_name  => 'Post'
 
 	has_many :design, :through     => :taggings,
 					  :source      => :taggable,
-					  :source_type => "Design"
+					  :source_type => 'Design'
 
-	has_many :music, :through     => :taggings,
+	has_many :music,  :through     => :taggings,
 					  :source      => :taggable,
 					  :source_type => "Music"
 
@@ -20,13 +20,11 @@ class Tag < ActiveRecord::Base
 					  :source      => :taggable,
 					  :source_type => "Shared"
 
-	validates :name, presence: true, uniqueness: true
-	validates :slug, :uniqueness => {
-		             :case_sensitive => false
-	}
+	validates :name, :presence => true, :uniqueness => { :case_sensitive => false }
+	validates :slug, :uniqueness => { :case_sensitive => false }
 
 	def slug=(slug)
-		slug = self[:name].sub("'","").parameterize if self[:slug].present?
+		slug = self[:name].sub("'","").parameterize if !self[:slug].present?
 		write_attribute(:slug, slug)
 	end
 
@@ -36,7 +34,7 @@ class Tag < ActiveRecord::Base
 
 	def self.ids_from_tokens(tokens)
 		tokens.gsub!(/<<(.+?)>>/) { create!(name: $1, slug: $1.parameterize).id }
-		tokens.split(',')
+		return tokens = tokens.split(',').map(&:to_i)
 	end
 
 	def self.find(params)
