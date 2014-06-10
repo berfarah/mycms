@@ -19,6 +19,9 @@
 /tmp
 .DS_Store
 
+# Ignore compiled assets
+/public/assets
+
 # Ignore Sublime Text files
 CMS.sublime-project
 CMS.sublime-workspace

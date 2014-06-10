@@ -17,6 +17,8 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require select2
+//= require ckeditor/override
+//= require ckeditor/init
 //= require_tree
 ready = function(){
 	$('.date.input-group').datetimepicker({
@@ -82,4 +84,4 @@ ready = function(){
 }
 
 $(document).ready(ready);
-$(document).on('page:load', ready)
+$(document).on('page:load', ready);

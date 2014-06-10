@@ -21,7 +21,7 @@ class Tag < ActiveRecord::Base
 					  :source_type => "Shared"
 
 	validates :name, :presence => true, :uniqueness => { :case_sensitive => false }
-	validates :slug, :uniqueness => { :case_sensitive => false }
+	validates :slug, :presence => true, :uniqueness => { :case_sensitive => false }
 
 	def slug=(slug)
 		slug = self[:name].sub("'","").parameterize if !self[:slug].present?

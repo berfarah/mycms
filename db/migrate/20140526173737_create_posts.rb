@@ -6,7 +6,6 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.text :summary
       t.text :content
-      t.text :content_html
       t.string :slug
       t.string :type
 

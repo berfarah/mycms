@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 gem 'carrierwave' # Image upload and storage
 gem 'mini_magick' # Image manipulation
 gem 'bootsy' # WYSIWYG Editor with Carrierwave support
+gem 'ckeditor' # WYSIWYG Editor with Carrierwave support
 
 gem 'nested_form' # Better support for nested forms
 gem 'select2-rails' # Tagging autocomplete

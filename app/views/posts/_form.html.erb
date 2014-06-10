@@ -38,7 +38,7 @@
 	</div>
 	<div class="form-group">
 		<%= f.label :content %><br>
-		<%= f.text_area :content, :class => "form-control", :rows => 10 %>
+		<%= f.cktext_area :content, :class => "form-control", :rows => 10, :ckeditor => {:language => 'us'} %>
 	</div>
 	<div class="form-group">
 		<%= f.label :tags %><br>

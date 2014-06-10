@@ -4,6 +4,9 @@ class Post < ActiveRecord::Base
 	has_many :metas, :as => :metable, :dependent => :destroy
 
 	include HasTagging
+	include ActionView::Helpers::SanitizeHelper
+	include ActionView::Helpers::TextHelper
+	before_save :set_content
 
 	scope :shared, -> { where(type: 'Shared') }
 	scope :music, -> { where(type: 'Music') }
@@ -36,6 +39,21 @@ class Post < ActiveRecord::Base
 
 	def type
 		read_attribute(:type).presence || "Post"
+	end
+
+	def set_content
+		content = sanitize self[:content], tags: %w(a br p code pre em strong b i iframe embed hr div h1 h2 h3 h4 h5)
+		write_attribute(:content, content)
+	end
+
+	def content
+		self[:content].html_safe
+	end
+
+	def summary
+		unless self[:summary].present?
+			truncate( sanitize( self[:content], tags: %w(a), attributes: %w(href class) ), :length => 80, :escape => false, :separator => ' ' )
+		end
 	end
 
 	def to_param

@@ -24,5 +24,8 @@ module Mycms
 
     # Autoload lib/ folder including all subdirectories
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    # Load CKEditor
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end
