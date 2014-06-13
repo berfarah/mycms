@@ -81,6 +81,8 @@ ready = function(){
 		}
 		$select.select2(options);
 	});
+
+	$('.hastooltip').tooltip();
 }
 
 $(document).ready(ready);

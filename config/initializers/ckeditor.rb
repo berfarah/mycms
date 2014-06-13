@@ -33,4 +33,5 @@ Ckeditor.setup do |config|
   # config.asset_path = "http://www.example.com/cke/"
 
   config.assets_languages = ["en"]
+  config.assets_plugins = ["iframe", "find", "dialog", "flash", "image", "link", "pastefromword", "pagebreak", "magicline", "specialchar", "tabletools", "templates", "wsc", "widget", "codesnippet"]
 end

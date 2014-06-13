@@ -1,0 +1,28 @@
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: #555;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	color: black;
+}
+code {
+	font-family: "Inconsolata", Courier, console;
+}
+
+.subtitle {
+	font-style: italic;
+	font-style: 1.5em;
+}
+
+blockquote {
+	font-family: Georgia, Times, serif;
+	font-style: italic;
+	border-left: 2px solid grey;
+	padding-left: 8px;
+}

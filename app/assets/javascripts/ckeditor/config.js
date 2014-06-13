@@ -3,23 +3,22 @@
  * For licensing, see LICENSE.html or http://ckeditor.com/license
  */
 
-CKEDITOR.stylesSet.add( 'styles', [
-	// Headers
-	{ name: 'Header', element: 'h2' },
-	{ name: 'Subheader', element: 'h3' },
-	{ name: 'Section', element: 'h4' },
-	{ name: 'Subsection', element: 'h5' },
-	{ name: 'Subtitle', element: 'span', attributes: { 'class': 'subtitle' } },
-	{ name: 'Code', element: 'pre' }
-] );
 
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
-	config.skin = "bootstrapck,/cke/bootstrapck/";
+	config.skin = "bootstrapck";
 
-	config.stylesSet = 'styles';
+	config.stylesSet = [
+		// Headers
+		{ name: 'Header', element: 'h2' },
+		{ name: 'Subheader', element: 'h3' },
+		{ name: 'Section', element: 'h4' },
+		{ name: 'Subsection', element: 'h5' },
+		{ name: 'Subtitle', element: 'span', attributes: { 'class': 'subtitle' } },
+		{ name: 'Code', element: 'pre' }
+	];
 
 	config.plugins.addExternal = 'widget', '/cke/widget';
 	config.plugins.addExternal = 'dialog', '/cke/dialog';
